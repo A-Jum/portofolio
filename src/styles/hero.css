@@ -1,0 +1,468 @@
+.hero {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  height: 100vh;
+  height: 100svh;
+}
+
+.hero__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--ground);
+  transform-origin: 50% 50%;
+  --lb: 0px;
+  --fh: 100vh;
+  --ground: 90vh;
+}
+
+.camera {
+  position: absolute;
+  inset: 0;
+  transform-origin: 46% 58%;
+  filter: contrast(1.08) saturate(0.9);
+}
+
+.layer,
+.layer__in {
+  position: absolute;
+  inset: 0;
+}
+.is-live .layer {
+  will-change: transform;
+}
+
+.sky__clouds,
+.mountains,
+.foreground {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.foreground {
+  left: -3%;
+  width: 106%;
+  filter: blur(3px);
+}
+
+/* L1 moon */
+.moon {
+  position: absolute;
+  width: 44vmin;
+  height: 44vmin;
+  left: calc(57% - 22vmin);
+  top: calc(var(--lb) + var(--fh) * 0.05);
+}
+.moon__disc {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.moon__halo {
+  position: absolute;
+  inset: -45%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(178, 30, 36, 0.42) 0%, rgba(142, 18, 25, 0.16) 38%, transparent 66%);
+  animation: halo 6s ease-in-out infinite alternate;
+}
+@keyframes halo {
+  from {
+    opacity: 0.75;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.layer--video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: screen;
+  opacity: 0.35;
+}
+
+/* L4 castle */
+.castle-wrap {
+  position: absolute;
+  right: 3vw;
+  bottom: calc(100% - var(--ground) + var(--fh) * 0.22);
+  width: min(40vw, 60vh);
+}
+.castle {
+  width: 100%;
+  height: auto;
+}
+
+/* L5 mist and L9 particles */
+.mist,
+.particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.mist {
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+
+/* L6 hill + ronin */
+.hill {
+  position: absolute;
+  left: -2vw;
+  width: 62vw;
+  top: calc(var(--ground) - var(--fh) * 0.04);
+  height: calc(100% - var(--ground) + var(--fh) * 0.04 + 2px);
+}
+.char {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.char svg {
+  width: 100%;
+  height: 100%;
+}
+.ronin-wrap {
+  height: var(--ronin-h, 50vh);
+  aspect-ratio: 240 / 420;
+}
+.ninja-wrap {
+  height: var(--ninja-h, 28vh);
+  aspect-ratio: 180 / 380;
+}
+.ronin__breath {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: breath 4s ease-in-out infinite;
+}
+@keyframes breath {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.01);
+  }
+}
+
+/* L7 grove */
+.grove {
+  position: absolute;
+  top: var(--grove-top, 0px);
+  left: var(--grove-left, 50vw);
+  width: var(--grove-w, 50vw);
+  aspect-ratio: 900 / 1080;
+}
+.grove__svg {
+  width: 100%;
+  height: 100%;
+}
+.stalk {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: sway 7s ease-in-out infinite alternate;
+}
+@keyframes sway {
+  from {
+    transform: rotate(-0.45deg);
+  }
+  to {
+    transform: rotate(0.55deg);
+  }
+}
+
+/* L8 extras */
+.crow-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: clamp(22px, 2.6vw, 38px);
+  opacity: 0;
+}
+.crow .crow__down {
+  visibility: hidden;
+}
+.is-live .crow .crow__up {
+  animation: flap-up 0.26s steps(1) infinite;
+}
+.is-live .crow .crow__down {
+  animation: flap-down 0.26s steps(1) infinite;
+}
+@keyframes flap-up {
+  0% { visibility: visible; }
+  50% { visibility: hidden; }
+}
+@keyframes flap-down {
+  0% { visibility: hidden; }
+  50% { visibility: visible; }
+}
+.speed {
+  position: absolute;
+  left: 0;
+  top: 45%;
+  width: 100%;
+  height: 45%;
+  opacity: 0;
+}
+
+/* L11 typography */
+.hero__type {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+.hero__card {
+  position: absolute;
+  left: var(--gutter);
+  top: calc(var(--lb) + var(--fh) * 0.11);
+  max-width: min(88vw, 72rem);
+  opacity: 0;
+}
+.hero__name {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 7.4vw, 8.25rem);
+  line-height: 0.96;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--washi);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4), 0 0 40px rgba(14, 2, 3, 0.7);
+}
+.hero__ch {
+  will-change: auto;
+}
+.hero__role {
+  margin-top: clamp(0.8rem, 2vh, 1.4rem);
+  font-family: var(--f-body);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 1.6vw, 1.5rem);
+  letter-spacing: 0.02em;
+  color: var(--washi);
+  text-shadow: 0 1px 2px #000, 0 0 12px rgba(0, 0, 0, 0.8);
+}
+.hero__roleText {
+  position: relative;
+  display: inline-block;
+  transform-origin: 0% 50%;
+}
+.shuriken {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.6));
+}
+.shuriken--a {
+  left: 22%;
+  top: -2.7rem;
+}
+.shuriken--b {
+  right: -3rem;
+  top: -1.6rem;
+}
+.shuriken--c {
+  left: 58%;
+  top: 2rem;
+}
+.hero__kanji {
+  position: absolute;
+  right: calc(4rem + 2vw);
+  top: calc(var(--lb) + var(--fh) * 0.08);
+  writing-mode: vertical-rl;
+  font-family: var(--f-brush);
+  font-size: clamp(1.8rem, 3.8vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.14em;
+  color: #a3161e;
+  text-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+}
+.hero__kanji span {
+  display: inline-block;
+}
+.hero__credit {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  letter-spacing: 0.32em;
+  color: var(--washi);
+  opacity: 0;
+}
+.hero__hint {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--lb) + 4.25rem);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--washi);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  opacity: 0;
+}
+.hero__hint svg {
+  width: 56px;
+  height: 28px;
+  margin-bottom: -10px;
+}
+.hero__drop {
+  display: block;
+  width: 5px;
+  height: 7px;
+  margin-top: 6px;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: var(--washi);
+  animation: drop 2.6s var(--ease-ink) infinite;
+}
+@keyframes drop {
+  0% {
+    transform: translateY(0) scaleY(0.6);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  80% {
+    transform: translateY(22px) scaleY(1.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(28px);
+    opacity: 0;
+  }
+}
+
+.slash {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  opacity: 0;
+  pointer-events: none;
+}
+.flash {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.subtitle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--lb) + 1.1rem);
+  z-index: 6;
+  padding: 0 calc(var(--gutter) + 2rem);
+  text-align: center;
+  font-family: var(--f-body);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: var(--washi);
+  text-shadow: 0 1px 2px #000, 0 0 10px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+.subtitle__word {
+  display: inline-block;
+  white-space: pre;
+  opacity: 0;
+  animation: word 0.45s var(--ease-ink) forwards;
+}
+@keyframes word {
+  to {
+    opacity: 1;
+  }
+}
+
+.letterbox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 7;
+  height: var(--lb);
+  background: #000;
+}
+.letterbox--top {
+  top: 0;
+}
+.letterbox--bottom {
+  bottom: 0;
+}
+.hero__black {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  background: #000;
+  pointer-events: none;
+}
+
+/* Creed sits right behind the pinned hero so the cut reveals it. */
+.is-motion .creed {
+  margin-top: -100vh;
+  margin-top: -100svh;
+}
+
+@media (orientation: portrait), (max-width: 767px) {
+  .hero__card {
+    left: 1.25rem;
+    right: 1.25rem;
+    top: calc(var(--lb) + 4.5rem);
+  }
+  .hero__name {
+    font-size: clamp(2.6rem, 13vw, 5rem);
+  }
+  .hero__kanji {
+    right: 1rem;
+    top: auto;
+    bottom: calc(var(--lb) + var(--fh) * 0.5);
+    font-size: 1.7rem;
+  }
+  .castle-wrap {
+    right: -18vw;
+    width: 72vw;
+  }
+  .hill {
+    width: 110vw;
+  }
+  .moon {
+    width: 60vw;
+    height: 60vw;
+    left: 34vw;
+    top: calc(var(--lb) + var(--fh) * 0.24);
+  }
+  .shuriken--a {
+    left: -0.4rem;
+    top: 1.8rem;
+  }
+  .shuriken--b {
+    right: -0.6rem;
+    top: -1.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ronin__breath,
+  .stalk,
+  .moon__halo,
+  .hero__drop {
+    animation: none;
+  }
+}

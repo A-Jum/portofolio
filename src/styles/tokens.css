@@ -1,0 +1,44 @@
+:root {
+  --yoru: #1f0507;
+  --urushi: #3b0a0d;
+  --chi: #8e1219;
+  --shu: #d23a2a;
+  --kin: #c8a24a;
+  --washi: #ecdfc7;
+  --hai: #a08f86;
+  --sumi: #1a0a06;
+  --hinoki: #c9a477;
+  --hinoki-dark: #8a6440;
+  --black: #000;
+
+  --ground: radial-gradient(ellipse 90% 70% at 62% 18%, #4a0b0f 0%, var(--yoru) 55%, #0e0203 100%);
+
+  --f-display: 'Shippori Mincho B1', 'Hiragino Mincho ProN', 'Yu Mincho', Georgia, serif;
+  --f-body: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Segoe UI', system-ui, sans-serif;
+  --f-brush: 'Yuji Syuku', 'Shippori Mincho B1', serif;
+
+  /* modular scale 1.333 on 18px */
+  --t-0: 0.84rem;
+  --t-1: 1.125rem;
+  --t-2: 1.5rem;
+  --t-3: 2rem;
+  --t-4: 2.666rem;
+  --t-5: 3.553rem;
+  --t-6: 4.736rem;
+
+  --ease-blade: cubic-bezier(0.7, 0, 0.2, 1);
+  --ease-ink: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --kanji-col: clamp(3rem, 7vw, 6rem);
+  --letterbox: max(0px, calc((100vh - 100vw / 2.39) / 2));
+  --focus: 2px solid var(--kin);
+
+  color-scheme: dark;
+}
+
+@media (orientation: portrait) {
+  :root {
+    --letterbox: 6vh;
+  }
+}

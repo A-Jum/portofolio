@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100">
+  <circle r="50" fill="#1f0507"/>
+  <g fill="none" stroke="#c8a24a" stroke-linecap="round">
+    <circle r="44" stroke-width="4"/>
+    <circle r="37" stroke-width="2"/>
+    <g id="arm">
+      <path d="M0 -19 C 18 -29, 31 -5, 16.45 9.5" stroke-width="4"/>
+      <path d="M0 -19 Q -7 -9 0 0" stroke-width="2.4"/>
+      <circle cy="-19" r="6.5" fill="#c8a24a" stroke="none"/>
+    </g>
+    <use href="#arm" transform="rotate(120)"/>
+    <use href="#arm" transform="rotate(240)"/>
+    <circle r="3.5" fill="#c8a24a" stroke="none"/>
+  </g>
+</svg>
