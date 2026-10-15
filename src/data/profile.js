@@ -58,7 +58,7 @@ export const profile = {
   company: 'PT. Indonesia Global Solusindo',
   location: 'Kabupaten Bandung, Indonesia',
   heroRoleLine: 'AI Engineer in Bandung, Indonesia',
-  photo: '/assets/andreas.jpg',
+  photo: `${import.meta.env.BASE_URL}assets/andreas.jpg`,
   degree: 'Sarjana Informatika (Bachelor of Informatics), ITHB',
 
   objective:

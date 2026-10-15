@@ -8,8 +8,6 @@ const CREDITS = [
   ['Written and directed by', profile.name],
   ['Starring', `${profile.name} as the ${profile.role}`],
   ['Filmed on location in', 'Bandung, Indonesia'],
-  ['Score composed in', 'the Web Audio API'],
-  ['Ronin and ninja drawn in', 'SVG'],
 ]
 
 /** 終章 縁 — rolling credits, real contact links and the closing 終. */

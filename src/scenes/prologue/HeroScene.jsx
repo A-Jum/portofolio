@@ -30,7 +30,7 @@ function useHeroVideo(enabled) {
     if (!enabled) return
     let alive = true
     ;(async () => {
-      for (const url of ['/media/hero.webm', '/media/hero.mp4']) {
+      for (const url of ['media/hero.webm', 'media/hero.mp4'].map((f) => import.meta.env.BASE_URL + f)) {
         try {
           const res = await fetch(url, { method: 'HEAD' })
           const type = res.headers.get('content-type') || ''
